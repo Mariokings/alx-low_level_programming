@@ -1,22 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
 /**
- * main - main block
- * Description - Print the alphabets
- * Return: 0
+ * main - Entry point
+ *
+ * Return: Always 0 (Success!)
  */
+
 int main(void)
 {
-	char c = 'a';
+	char low;
 
-	while (c <= 'z')
+	low = 'a';
+	while (low <= 'z')
 	{
-		if (c != 'e' && c != 'q')
+		if (low != 'e' && low != 'q')
 		{
-			putchar(c);
+			putchar(low);
 		}
-		c++;
+		low++;
 	}
 	putchar('\n');
 	return (0);
+}
