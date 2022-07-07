@@ -6,7 +6,7 @@
  * Return: On success Nothing.
  */
 
-void print_alphabet(void)
+void print_alphabet()
 {
 	char alpha;
 	int i;
