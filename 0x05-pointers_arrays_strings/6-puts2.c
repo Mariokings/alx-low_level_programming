@@ -6,7 +6,7 @@
  * @str: string
  */
 
-void puts2(char *str);
+void puts2(char *str)
 {
 	if ((*str % 2) == 0)
 	{
