@@ -3,10 +3,17 @@
 
 /**
  * _puts - prints a string
- * @str: parameter
+ * @str: string
  */
 
 void _puts(char *str)
 {
-	_puts("%s", str);
+	char *read = str;
+	
+	while (*read != '\0')
+	{
+		_puts(*read);
+		read++;
+	}
+	_puts('\n');
 }
