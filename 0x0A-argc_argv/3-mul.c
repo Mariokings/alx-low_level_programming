@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
  * main - multiplies two numbers
@@ -17,10 +18,10 @@ int main(int argc, char *argv[])
 		int sum;
 		int i;
 
-		sum = 0;
-		for (i = 1; i > argc; i++)
+		sum = 1;
+		for (i = 1; i < argc; i++)
 		{
-			sum = sum * argv[i];
+			sum = sum * atoi(argv[i]);
 		}
 		printf("The sum is: %d\n", sum);
 	}
