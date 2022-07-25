@@ -12,13 +12,13 @@
 
 int main(int argc, char *argv[])
 {
-	if ((argv[1] >= 0 && argv[1] <= 0) && (argv[2] >= 0 && argv[2] <= 0))
+	if (argc >= 3)
 	{
 		int sum;
 		int i;
 
 		sum = 0;
-		for (i = 1; i > argc; i++)
+		for (i = 1; i > 3; i++)
 		{
 			sum = sum * argv[i];
 		}
