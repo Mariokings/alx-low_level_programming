@@ -1,54 +1,48 @@
-#include <stdlib.h>
 #include "lists.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
- * insert_dnodeint_at_index - inserts a new node at a given position.
+ * insert_dnodeint_at_index - inserts a new node at a given position
+ * @h: double pointer to the beginning of the linked list
+ * @idx: index at which to insert the new node
+ * @n: data to enter into new node
  *
- * @h: head pointer to the first node
- *
- * @idx: position to insert the new node
- *
- * @n: data to be stored
- *
- * Return: the address of the new node, or NULL if it failed
+ * Return: pointer to the new node, or NULL on failure
  */
-
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	dlistint_t *new, *temp, *prev;
-	size_t count = 1;
+	dlistint_t *new, *next, *current;
+	unsigned int i;
 
-	temp = prev = *h;
+	if (h == NULL)
+		return (NULL);
+	if (idx != 0)
+	{
+		current = *h;
+		for (i = 0; i < idx - 1 && current != NULL; i++)
+			current = current->next;
+		if (current == NULL)
+			return (NULL);
+	}
 	new = malloc(sizeof(dlistint_t));
 	if (new == NULL)
 		return (NULL);
-	if (temp == NULL)
-		return (NULL);
-	if (idx == 0)
-		return (add_dnodeint(h, n));
-	while (temp != NULL)
-	{
-		count++;
-		temp = temp->next;
-	}
-	if (idx == count)
-		return (add_dnodeint_end(h, n));
-	if (idx > count)
-		return (NULL);
-	count = 1;
-	temp = *h;
-	while (count <= idx)
-	{
-		prev = temp;
-		temp = temp->next;
-		count++;
-	}
-	if (prev == NULL)
-		return (NULL);
 	new->n = n;
-	new->prev = prev;
-	new->next = temp;
-	prev->next = new;
-	temp->prev = new;
+	if (idx == 0)
+	{
+		next = *h;
+		*h = new;
+		new->prev = NULL;
+	}
+	else
+	{
+		new->prev = current;
+		next = current->next;
+		current->next = new;
+	}
+	new->next = next;
+	if (new->next != NULL)
+		new->next->prev = new;
 	return (new);
 }
