@@ -12,7 +12,7 @@
  */
 
 int delete_within(dlistint_t **head, unsigned int index)
-{	
+{
 	dlistint_t *temp, *tail;
 	size_t count = 1;
 
