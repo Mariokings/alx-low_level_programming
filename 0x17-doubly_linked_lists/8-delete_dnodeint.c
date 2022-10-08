@@ -17,8 +17,6 @@ int delete_within(dlistint_t **head, unsigned int index)
 	size_t count = 1;
 
 	temp = *head;
-	if (temp == NULL)
-		return (-1);
 	while (count <= index)
 	{
 		count++;
