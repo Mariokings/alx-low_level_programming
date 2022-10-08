@@ -2,77 +2,39 @@
 #include <stdlib.h>
 
 /**
- * delete_within - deletes the node at 'index' index of a linked list.
+ * delete_dnodeint_at_index - deletes a node at a specific index
+ * @head: double pointer to the linked list
+ * @index: index at which to delete node
  *
- * @head: head pointer to the first element of the list
- *
- * @index: position od node to delete
- *
- * Return: 1 if it succeeded, -1 if it failed
+ * Return: 1 on success, -1 on failure
  */
-
-int delete_within(dlistint_t **head, unsigned int index)
-{
-	dlistint_t *temp, *tail;
-	size_t count = 1;
-
-	temp = *head;
-	while (count <= index)
-	{
-		count++;
-		tail = temp;
-		temp = temp->next;
-	}
-	tail->next = temp->next;
-	temp->next->prev = tail;
-	free(temp);
-	return (1);
-}
-
-/**
- * delete_dnodeint_at_index - deletes the node at index index of a linked list.
- *
- * @head: head pointer to the first element of the list
- *
- * @index: position od node to delete
- *
- * Return: 1 if it succeeded, -1 if it failed
- */
-
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-	dlistint_t *temp, *tail;
-	size_t count = 0;
+	dlistint_t *current;
+	unsigned int i;
 
-	temp = *head;
-	if (temp == NULL)
+	if (head == NULL || *head == NULL)
 		return (-1);
-	while (temp != NULL)
+	current = *head;
+	if (index == 0)
 	{
-		count++;
-		tail = temp;
-		temp = temp->next;
+		*head = current->next;
+		if (current->next != NULL)
+		{
+			current->next->prev = NULL;
+		}
+		free(current);
+		return (1);
 	}
-	if (index > count)
-		return (-1);
-	temp = *head;
-	if (index == 0 && count == 1)
+	for (i = 0; i < index; i++)
 	{
-		*head = (*head)->next;
-		free(temp);
+		if (current->next == NULL)
+			return (-1);
+		current = current->next;
 	}
-	else if (index == 0)
-	{
-		*head = (*head)->next;
-		(*head)->prev = temp->prev;
-		free(temp);
-	}
-	else if (index == count)
-	{
-		tail->prev->next = temp;
-		free(tail);
-	}
-	else
-		delete_within(head, index);
+	current->prev->next = current->next;
+	if (current->next != NULL)
+		current->next->prev = current->prev;
+	free(current);
 	return (1);
 }
